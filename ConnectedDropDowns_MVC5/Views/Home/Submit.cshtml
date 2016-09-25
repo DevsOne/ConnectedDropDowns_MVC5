@@ -1,0 +1,32 @@
+﻿@model ConnectedDropDowns_MVC5.Models.DropViewModel
+
+@{
+    ViewBag.Title = "Submit";
+}
+
+<br />
+@Html.ActionLink("Home","Index","Home")
+<br />
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.CountryName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CountryName, new { @class = "form-control",@value = Model.CountryName, @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.StateName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.StateName, new { @class = "form-control", @value = Model.StateName, @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CityName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CityName, new { @class = "form-control", @value = Model.CityName, @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+
+

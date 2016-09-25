@@ -1,0 +1,26 @@
+﻿@model ConnectedDropDowns_MVC5.Models.DropViewModel
+
+@using (Ajax.BeginForm("City", "Home", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "partialsCity",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form", id = "stateForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.StateName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.StateName, Model.States, "Select State", new { @class = "form-control", onchange = "stateForm()" })
+        </div>
+    </div>
+}
+
+@Html.TextBoxFor(m => m.CountryName, new { @value = Model.CountryName, hidden = "hidden" })
+<div id="partialsCity"></div>
+
+<script>
+    function stateForm() {
+        $('#stateForm').submit();
+    }
+</script>

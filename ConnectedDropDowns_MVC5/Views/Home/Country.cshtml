@@ -1,0 +1,29 @@
+﻿@model ConnectedDropDowns_MVC5.Models.DropViewModel
+@using ConnectedDropDowns_MVC5.Controllers
+@{ 
+    HomeController hm = new HomeController();
+    var countries = hm.GetCountries();
+}
+
+@using (Ajax.BeginForm("State", "Home", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "partialsState",
+    InsertionMode = InsertionMode.Replace
+}, new { @class = "form-horizontal", role = "form", id = "countryForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.CountryName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.CountryName, countries, "Select Country", new { @class = "form-control",id = "countryDDL", onchange = "countryForm()" })
+        </div>
+    </div>
+}
+
+<div id="partialsState"></div>
+<script>
+    function countryForm() {
+        $('#countryForm').submit();
+    }
+</script>
